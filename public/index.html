@@ -1,0 +1,184 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Inventory Optimization</title>
+
+    <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
+</head>
+
+<body>
+    <header>
+        <div>
+            <h1>Inventory Optimization</h1>
+            <p>Smart inventory planning using DAA</p>
+        </div>
+        <span class="badge">0/1 Knapsack</span>
+    </header>
+
+    <main>
+        <section class="intro">
+            <h2>Optimize Your Inventory</h2>
+            <p>
+                Select products to maximize total profit
+                without exceeding your storage capacity.
+            </p>
+        </section>
+
+        <section class="panel">
+            <h2>Add Product</h2>
+
+            <form id="productForm">
+                <input
+                    type="text"
+                    id="productName"
+                    placeholder="Product name"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="productWeight"
+                    placeholder="Weight (kg)"
+                    min="1"
+                    step="1"
+                    required
+                >
+
+                <input
+                    type="number"
+                    id="productProfit"
+                    placeholder="Profit (₹)"
+                    min="0"
+                    step="1"
+                    required
+                >
+
+                <button type="submit">Add Product</button>
+            </form>
+        </section>
+
+        <section class="panel">
+            <div class="section-heading">
+                <h2>Product Inventory</h2>
+                <button id="loadSample" class="secondary">
+                    Load Sample Data
+                </button>
+            </div>
+
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Weight (kg)</th>
+                            <th>Profit (₹)</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="productTable">
+                        <tr>
+                            <td colspan="4">
+                                No products added yet.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="panel capacity-panel">
+            <h2>Storage Configuration</h2>
+
+            <label for="capacity">
+                Maximum Storage Capacity (kg)
+            </label>
+
+            <input
+                type="number"
+                id="capacity"
+                min="1"
+                step="1"
+                value="5"
+            >
+
+            <button id="optimizeButton">
+                Optimize Inventory
+            </button>
+
+            <p id="message" role="status"></p>
+        </section>
+
+        <section id="results" hidden>
+            <h2>Optimization Results</h2>
+
+            <div class="result-grid">
+                <article class="result-card">
+                    <h3>Optimal Profit</h3>
+                    <p id="dpProfit">₹0</p>
+                    <span>Dynamic Programming</span>
+                </article>
+
+                <article class="result-card">
+                    <h3>Greedy Profit</h3>
+                    <p id="greedyProfit">₹0</p>
+                    <span>Greedy Algorithm</span>
+                </article>
+
+                <article class="result-card">
+                    <h3>Storage Used</h3>
+                    <p id="storageUsed">0 kg</p>
+                    <span>Optimal solution</span>
+                </article>
+            </div>
+
+            <div class="panel">
+                <h3>Selected Products — Dynamic Programming</h3>
+                <ul id="dpProducts"></ul>
+            </div>
+
+            <div class="panel">
+                <h3>Selected Products — Greedy Algorithm</h3>
+                <ul id="greedyProducts"></ul>
+            </div>
+
+            <div class="panel">
+                <h3>Algorithm Comparison</h3>
+
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Algorithm</th>
+                                <th>Total Weight</th>
+                                <th>Total Profit</th>
+                                <th>Execution Time</th>
+                                <th>Time Complexity</th>
+                            </tr>
+                        </thead>
+
+                        <tbody id="comparisonTable"></tbody>
+                    </table>
+                </div>
+
+                <p id="comparisonMessage"></p>
+                <p class="note">
+                    Execution times vary with hardware, input size,
+                    and runtime conditions. Small measurements may
+                    be affected by timing overhead.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>DAA Project | Inventory Optimization Using Knapsack</p>
+    </footer>
+</body>
+</html>
+```
